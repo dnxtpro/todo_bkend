@@ -38,3 +38,22 @@ try{
 }
 catch(error){res.status(500).json({ error: 'Error del servidor', detalle: error.message });}
   };
+  exports.deleteCategory = async(req,res)=>{
+    const catId = req.params.id
+    try{
+        const categoria = await Category.findOne({
+            where:{id:catId}
+        });
+        if(categoria){
+            await categoria.destroy();
+            res.status(200).json('Borrado Con EXITO')
+        }
+        else{
+            res.status(500).json({error:'No existe tal categoria'})
+          }
+
+    }
+    catch(error){res.status(500).json({ error: 'Error del servidor', detalle: error.message });
+
+    }
+  }

@@ -22,4 +22,9 @@ module.exports = function(app) {
     [authJwt.verifyToken],
     category.getCategory
   );
+  app.delete(
+    "/api/category/delete/:id",
+    [authJwt.verifyToken],
+    category.deleteCategory
+  );
 };
