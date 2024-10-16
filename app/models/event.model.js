@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: true
         },
         date: {
-            type: Sequelize.DATE,
+            type: Sequelize.STRING,
             allowNull: true // Puede ser obligatorio según tus necesidades
         },
 
@@ -49,7 +49,12 @@ module.exports = (sequelize, Sequelize) => {
                 key:'id'
             }
         },
+        done:{
+            type:Sequelize.BOOLEAN,
+            allowNull:true,
+        }
     });
+    
 
     // Puedes definir relaciones aquí si es necesario
 

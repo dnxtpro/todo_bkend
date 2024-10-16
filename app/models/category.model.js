@@ -22,5 +22,11 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
     });
+    Category.associate = function(models) {
+    Category.hasMany(models.Eventos, {
+        foreignKey: 'category_id',
+        as: 'eventos', // Esto puede ser útil si necesitas acceder a eventos desde categoría
+    });
+};
     return Category;
 };

@@ -32,6 +32,14 @@ db.role.belongsToMany(db.user, {
 db.user.belongsToMany(db.role, {
   through: "user_roles"
 });
+db.event.belongsTo(db.category, {
+  foreignKey: "category_id",
+  as: "Categoria", // Alias para la categoría en los eventos
+});
+db.category.hasMany(db.event, {
+  foreignKey: "category_id",
+  as: "eventos", // Alias para los eventos en la categoría
+});
 
 db.ROLES = ["user", "admin", "moderator"];
 
