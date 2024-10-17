@@ -9,7 +9,7 @@ exports.addEvent = async(req,res)=>{
     try {
         const { Titulo, Descripcion, Categoria, Prioridad, Fecha_Inicio,Fecha_Fin,FullDay,Hecho, } = req.body.tarea;
 
-        console.log(Titulo, Descripcion, Categoria, Prioridad, Fecha, Hecho);
+        console.log(Titulo, Descripcion, Categoria, Prioridad,Hecho);
         const category = await Category.findByPk(Categoria.id);
         if (!category) {
             return res.status(404).json({ message: 'Categoría no encontrada' });
