@@ -7,7 +7,7 @@ const Event = db.event;
 exports.addEvent = async(req,res)=>{
     const userId=req.userId
     try {
-        const { Titulo, Descripcion, Categoria, Prioridad, Fecha, Hecho } = req.body.tarea;
+        const { Titulo, Descripcion, Categoria, Prioridad, Fecha_Inicio,Fecha_Fin,FullDay,Hecho, } = req.body.tarea;
 
         console.log(Titulo, Descripcion, Categoria, Prioridad, Fecha, Hecho);
         const category = await Category.findByPk(Categoria.id);
@@ -21,7 +21,9 @@ exports.addEvent = async(req,res)=>{
             description:Descripcion,
             category_id: category.id, // Usa el id de la categoría existente
             priority:Prioridad,
-            date: Fecha, // Convierte a formato de fecha
+            startDate: Fecha_Inicio, // Convierte a formato de fecha
+            endDate: Fecha_Fin, // Convierte a formato de fecha
+            fullDay: FullDay, // Convierte a formato de fecha
             done:Hecho,
             userId:userId,
         });
@@ -62,7 +64,9 @@ exports.getEvent = async(req,res)=>{
               color: evento.Categoria.color
             },
             Prioridad: evento.priority,
-            Fecha: evento.date,
+            Fecha_Inicio: evento.startDate,
+            Fecha_Fin: evento.endDate,
+            FullDay: evento.fullDay,
             Hecho: evento.done
           }));
         return res.status(200).json(eventosFormateados);

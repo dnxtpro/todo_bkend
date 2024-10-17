@@ -13,10 +13,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.TEXT, // Cambié a TEXT para permitir descripciones más largas
             allowNull: true
         },
-        date: {
-            type: Sequelize.STRING,
-            allowNull: true // Puede ser obligatorio según tus necesidades
-        },
 
         createdAt: {
             type: Sequelize.DATE,
@@ -52,7 +48,10 @@ module.exports = (sequelize, Sequelize) => {
         done:{
             type:Sequelize.BOOLEAN,
             allowNull:true,
-        }
+        },
+        startDate:{type: Sequelize.DATE,allowNull: false,},
+        endDate:{type: Sequelize.DATE},
+        fullDay:{type: Sequelize.BOOLEAN,}
     });
     
 
