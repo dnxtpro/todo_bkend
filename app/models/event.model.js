@@ -52,7 +52,7 @@ module.exports = (sequelize, Sequelize) => {
         startDate:{type: Sequelize.DATE,allowNull: false},
         endDate:{type: Sequelize.DATE},
         fullDay:{type: Sequelize.BOOLEAN},
-        Tipo:{type: Sequelize.STRING,}
+        type:{type: Sequelize.STRING,}
     });
     
 
