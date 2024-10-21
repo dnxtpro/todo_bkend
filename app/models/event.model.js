@@ -49,9 +49,10 @@ module.exports = (sequelize, Sequelize) => {
             type:Sequelize.BOOLEAN,
             allowNull:true,
         },
-        startDate:{type: Sequelize.DATE,allowNull: false,},
+        startDate:{type: Sequelize.DATE,allowNull: false},
         endDate:{type: Sequelize.DATE},
-        fullDay:{type: Sequelize.BOOLEAN,}
+        fullDay:{type: Sequelize.BOOLEAN},
+        Tipo:{type: Sequelize.STRING,}
     });
     
 

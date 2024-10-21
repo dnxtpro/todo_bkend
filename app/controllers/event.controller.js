@@ -7,7 +7,7 @@ const Event = db.event;
 exports.addEvent = async(req,res)=>{
     const userId=req.userId
     try {
-        const { Titulo, Descripcion, Categoria, Prioridad, Fecha_Inicio,Fecha_Fin,FullDay,Hecho, } = req.body.tarea;
+        const { Titulo, Descripcion, Categoria, Prioridad, Fecha_Inicio,Fecha_Fin,FullDay,Hecho,Tipo } = req.body.tarea;
 
         console.log(Titulo, Descripcion, Categoria, Prioridad,Hecho);
         const category = await Category.findByPk(Categoria.id);
@@ -26,6 +26,7 @@ exports.addEvent = async(req,res)=>{
             fullDay: FullDay, // Convierte a formato de fecha
             done:Hecho,
             userId:userId,
+            type:Tipo,
         });
 
         return res.status(201).json(newEvent);
@@ -56,6 +57,7 @@ exports.getEvent = async(req,res)=>{
 
         // Mapea los eventos a la estructura deseada
         const eventosFormateados = eventos.map(evento => ({
+            Id:evento.id,
             Titulo: evento.title,
             Descripcion: evento.description,
             Categoria: {
@@ -67,7 +69,8 @@ exports.getEvent = async(req,res)=>{
             Fecha_Inicio: evento.startDate,
             Fecha_Fin: evento.endDate,
             FullDay: evento.fullDay,
-            Hecho: evento.done
+            Hecho: evento.done,
+            Tipo:evento.type
           }));
         return res.status(200).json(eventosFormateados);
     } catch (error) {

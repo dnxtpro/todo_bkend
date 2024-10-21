@@ -10,6 +10,15 @@ exports.addCategory  = async(req, res) => {
     const userId = req.userId
     console.log(req.body,userId)
 try{
+    const existingCategory = await Category.findOne({
+        where: {
+            name: catname,
+            userId: userId
+        }
+    });
+    if (existingCategory) {
+        return res.status(400).json({ error: 'El usuario ya tiene una categoría con ese nombre' });
+    }
     const cat = await Category.create({
         name: catname,
         color: catcolor,
